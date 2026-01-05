@@ -52,11 +52,11 @@ export function GraphVisualization() {
       {/* Overlay UI */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Title */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 glass-panel px-6 py-3 pointer-events-auto z-20">
-          <h1 className="text-lg font-semibold text-foreground tracking-tight">
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 glass-panel px-4 py-2 pointer-events-auto z-20">
+          <h1 className="text-base font-semibold text-foreground tracking-tight">
             Entity Relationship Explorer
           </h1>
-          <p className="text-xs text-muted-foreground text-center mt-1">
+          <p className="text-[10px] text-muted-foreground text-center mt-0.5">
             Interactive force-directed graph visualization
           </p>
         </div>

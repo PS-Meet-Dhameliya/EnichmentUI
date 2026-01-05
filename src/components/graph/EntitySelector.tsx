@@ -16,7 +16,7 @@ export function EntitySelector({ entities, selectedEntity, onEntityChange }: Ent
     if (entities.length === 0) return null;
 
     return (
-        <div className="absolute top-4 left-[220px] z-20 glass-panel px-4 py-3">
+        <div className="absolute top-4 left-[260px] z-20 glass-panel px-4 py-3">
             <label className="text-xs text-muted-foreground mb-2 block font-medium">
                 View Perspective
             </label>
