@@ -1,6 +1,7 @@
 // Generic graph types for force-directed visualization
 
-export type NodeType = 'entity' | 'employee' | 'hospital' | 'claim';
+// NodeType is now a string to support dynamic entity types from JSON
+export type NodeType = string;
 
 export interface GraphNode {
   id: string;
@@ -90,6 +91,47 @@ export interface InsuranceDetails {
   coverageType: string;
   policyStartDate: string;
   policyEndDate: string;
+}
+
+// Insurance Policy types for new data structure
+export interface PolicyCoverageDetails {
+  coverageType: string;
+  sumInsured: number;
+  currency: string;
+}
+
+export interface PolicyPeriod {
+  startDate: string;
+  endDate: string;
+}
+
+export interface PolicyClaim {
+  claimId: string;
+  claimType: string;
+  claimAmount: number;
+  approvedAmount: number;
+  status: string;
+  claimDate: string;
+}
+
+export interface InsurancePolicy {
+  policyId: string;
+  policyNumber: string;
+  policyType: string;
+  provider: string;
+  coverageDetails: PolicyCoverageDetails;
+  policyPeriod: PolicyPeriod;
+  claims: PolicyClaim[];
+}
+
+export interface EmployeeWithPolicies {
+  employeeId: string;
+  employeeDetails: {
+    name: string;
+    department: string;
+    email: string;
+  };
+  insurancePolicies: InsurancePolicy[];
 }
 
 export interface EmployeeData {

@@ -1,51 +1,64 @@
-import { Users, Building, ArrowRight } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-interface GraphLegendProps {
-  navigationMode: 'employees-first' | 'hospitals-first' | null;
+interface EntityInfo {
+  id: string;
+  label: string;
+  count: number;
 }
 
-export function GraphLegend({ navigationMode }: GraphLegendProps) {
+interface GraphLegendProps {
+  entities: EntityInfo[];
+  entityColors: Record<string, string>;
+  selectedFile: string;
+  onFileChange: (file: string) => void;
+}
+
+const AVAILABLE_FILES = [
+  { id: 'example-3-entities.json', label: 'Insurance Data (3 entities)' },
+  { id: 'example-4-entities.json', label: 'HR Data (4 entities)' },
+  { id: 'car_details.json', label: 'Suzuki Car Sales (4 entities)' },
+];
+
+export function GraphLegend({ entities, entityColors, selectedFile, onFileChange }: GraphLegendProps) {
   return (
-    <div className="absolute top-4 left-4 glass-panel p-4 space-y-3">
+    <div className="absolute top-4 left-4 glass-panel p-4 space-y-4 min-w-[240px]">
       <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
         Legend
       </h4>
-      
+
+      {/* Entity Types */}
       <div className="space-y-2">
-        <LegendItem color="bg-primary" label="Entity Type" />
-        <LegendItem color="bg-graph-employee" label="Employee" />
-        <LegendItem color="bg-graph-hospital" label="Hospital" />
-        <LegendItem color="bg-graph-claim" label="Claim" />
+        {entities.map((entity) => (
+          <LegendItem
+            key={entity.id}
+            color={entityColors[entity.id] || entityColors['entity'] || '#888'}
+            label={entity.label}
+            count={entity.count}
+          />
+        ))}
       </div>
 
-      {navigationMode && (
-        <div className="pt-2 border-t border-border/50">
-          <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
-            Navigation Path
-          </h4>
-          <div className="flex items-center gap-2 text-xs text-foreground">
-            {navigationMode === 'employees-first' ? (
-              <>
-                <Users className="w-3.5 h-3.5 text-graph-employee" />
-                <ArrowRight className="w-3 h-3 text-muted-foreground" />
-                <Building className="w-3.5 h-3.5 text-graph-hospital" />
-                <ArrowRight className="w-3 h-3 text-muted-foreground" />
-                <span className="text-graph-claim">Claims</span>
-              </>
-            ) : (
-              <>
-                <Building className="w-3.5 h-3.5 text-graph-hospital" />
-                <ArrowRight className="w-3 h-3 text-muted-foreground" />
-                <Users className="w-3.5 h-3.5 text-graph-employee" />
-                <ArrowRight className="w-3 h-3 text-muted-foreground" />
-                <span className="text-graph-claim">Claims</span>
-              </>
-            )}
-          </div>
-        </div>
-      )}
+      {/* Data Source Selector */}
+      <div className="pt-2 border-t border-border/50">
+        <label className="text-xs text-muted-foreground mb-2 block font-medium uppercase tracking-wider">
+          Data Source
+        </label>
+        <Select value={selectedFile} onValueChange={onFileChange}>
+          <SelectTrigger className="w-full bg-background/50 border-border/50 h-8 text-xs">
+            <SelectValue placeholder="Select data file" />
+          </SelectTrigger>
+          <SelectContent>
+            {AVAILABLE_FILES.map((file) => (
+              <SelectItem key={file.id} value={file.id} className="text-xs">
+                {file.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
 
-      <div className="pt-2 border-t border-border/50 text-xs text-muted-foreground">
+      {/* Instructions */}
+      <div className="pt-2 border-t border-border/50 text-xs text-muted-foreground space-y-1">
         <p>Click nodes to expand/collapse</p>
         <p>Drag to reposition</p>
         <p>Scroll to zoom</p>
@@ -54,11 +67,17 @@ export function GraphLegend({ navigationMode }: GraphLegendProps) {
   );
 }
 
-function LegendItem({ color, label }: { color: string; label: string }) {
+function LegendItem({ color, label, count }: { color: string; label: string; count?: number }) {
   return (
     <div className="flex items-center gap-2">
-      <div className={`w-3 h-3 rounded-full ${color}`} />
-      <span className="text-xs text-foreground">{label}</span>
+      <div
+        className="w-3 h-3 rounded-full"
+        style={{ backgroundColor: color }}
+      />
+      <span className="text-xs text-foreground">
+        {label}
+        {count !== undefined && <span className="text-muted-foreground ml-1">({count})</span>}
+      </span>
     </div>
   );
 }

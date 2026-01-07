@@ -8,20 +8,12 @@ interface ForceGraphProps {
   onNodeClick: (node: GraphNode) => void;
   onNodeHover: (node: GraphNode | null) => void;
   selectedNodeId?: string;
+  entityColors?: Record<string, string>;
 }
-
-const NODE_COLORS: Record<string, string> = {
-  entity: '#22d3ee',    // cyan-400
-  employee: '#38bdf8',  // sky-400
-  hospital: '#34d399',  // emerald-400
-  claim: '#fbbf24',     // amber-400
-};
 
 const NODE_SIZES: Record<string, number> = {
   entity: 24,
-  employee: 16,
-  hospital: 16,
-  claim: 10,
+  default: 14,
 };
 
 export function ForceGraph({
@@ -29,7 +21,8 @@ export function ForceGraph({
   links,
   onNodeClick,
   onNodeHover,
-  selectedNodeId
+  selectedNodeId,
+  entityColors = {}
 }: ForceGraphProps) {
   const fgRef = useRef<ForceGraphMethods<GraphNode, GraphLink>>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -88,8 +81,8 @@ export function ForceGraph({
   }, [onNodeClick]);
 
   const drawNode = useCallback((node: GraphNode, ctx: CanvasRenderingContext2D, globalScale: number) => {
-    const size = NODE_SIZES[node.type] || 12;
-    const color = NODE_COLORS[node.type] || '#888';
+    const size = NODE_SIZES[node.type] || NODE_SIZES.default;
+    const color = entityColors[node.type] || entityColors['entity'] || '#888';
     const isSelected = node.id === selectedNodeId;
     const x = node.x || 0;
     const y = node.y || 0;
@@ -153,7 +146,7 @@ export function ForceGraph({
       ctx.fillStyle = '#94a3b8';
       ctx.fillText(`(${node.childCount})`, x, badgeY);
     }
-  }, [selectedNodeId]);
+  }, [selectedNodeId, entityColors]);
 
   const drawLink = useCallback((link: GraphLink, ctx: CanvasRenderingContext2D) => {
     const source = link.source as unknown as GraphNode;
@@ -169,8 +162,8 @@ export function ForceGraph({
       targetX === undefined || targetY === undefined) return;
 
     // Get colors
-    const sourceColor = NODE_COLORS[source.type] || '#888';
-    const targetColor = NODE_COLORS[target.type] || '#888';
+    const sourceColor = entityColors[source.type] || entityColors['entity'] || '#888';
+    const targetColor = entityColors[target.type] || entityColors['entity'] || '#888';
 
     // Draw link with solid color for better visibility
     const lineWidth = link.value ? Math.min(4, 1.5 + link.value * 0.5) : 2;
@@ -195,7 +188,7 @@ export function ForceGraph({
     ctx.moveTo(sourceX, sourceY);
     ctx.lineTo(targetX, targetY);
     ctx.stroke();
-  }, []);
+  }, [entityColors]);
 
   // Handle node drag - allow free movement
   const handleNodeDragEnd = useCallback((node: GraphNode) => {

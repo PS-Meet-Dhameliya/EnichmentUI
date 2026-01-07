@@ -1,0 +1,254 @@
+{
+    "metadata": {
+        "name": "Suzuki Car Sales and Service Dataset",
+        "description": "Large dataset covering Suzuki car sales, customers, dealers, and service claims",
+        "version": "1.0",
+        "generatedAt": "2025-01-02T10:30:00Z"
+    },
+    "entities": [
+        {
+            "type": "Car",
+            "id": "CAR001",
+            "name": "Suzuki Swift 2023",
+            "brand": "Suzuki",
+            "model": "Swift",
+            "year": 2023,
+            "fuelType": "Petrol",
+            "price": 850000,
+            "relationships": [
+                {
+                    "type": "Sale",
+                    "id": "SALE001"
+                },
+                {
+                    "type": "ServiceClaim",
+                    "id": "SERV001"
+                },
+                {
+                    "type": "ServiceClaim",
+                    "id": "SERV002"
+                }
+            ]
+        },
+        {
+            "type": "Car",
+            "id": "CAR002",
+            "name": "Suzuki Baleno 2024",
+            "brand": "Suzuki",
+            "model": "Baleno",
+            "year": 2024,
+            "fuelType": "Petrol",
+            "price": 920000,
+            "relationships": [
+                {
+                    "type": "Sale",
+                    "id": "SALE002"
+                },
+                {
+                    "type": "ServiceClaim",
+                    "id": "SERV003"
+                }
+            ]
+        },
+        {
+            "type": "Car",
+            "id": "CAR003",
+            "name": "Suzuki Brezza 2024",
+            "brand": "Suzuki",
+            "model": "Brezza",
+            "year": 2024,
+            "fuelType": "Diesel",
+            "price": 1150000,
+            "relationships": [
+                {
+                    "type": "Sale",
+                    "id": "SALE003"
+                },
+                {
+                    "type": "ServiceClaim",
+                    "id": "SERV004"
+                },
+                {
+                    "type": "ServiceClaim",
+                    "id": "SERV005"
+                }
+            ]
+        },
+        {
+            "type": "Customer",
+            "id": "CUST001",
+            "name": "Rahul Sharma",
+            "phone": "+91-9876543210",
+            "city": "Delhi",
+            "relationships": [
+                {
+                    "type": "Sale",
+                    "id": "SALE001"
+                }
+            ]
+        },
+        {
+            "type": "Customer",
+            "id": "CUST002",
+            "name": "Anita Verma",
+            "phone": "+91-9123456789",
+            "city": "Mumbai",
+            "relationships": [
+                {
+                    "type": "Sale",
+                    "id": "SALE002"
+                }
+            ]
+        },
+        {
+            "type": "Customer",
+            "id": "CUST003",
+            "name": "Suresh Iyer",
+            "phone": "+91-9988776655",
+            "city": "Bangalore",
+            "relationships": [
+                {
+                    "type": "Sale",
+                    "id": "SALE003"
+                }
+            ]
+        },
+        {
+            "type": "Sale",
+            "id": "SALE001",
+            "name": "Sale to Rahul Sharma (Feb 2024)",
+            "saleDate": "2024-02-15",
+            "saleAmount": 830000,
+            "paymentMode": "Loan",
+            "dealer": "Suzuki Arena Delhi",
+            "relationships": [
+                {
+                    "type": "Car",
+                    "id": "CAR001"
+                },
+                {
+                    "type": "Customer",
+                    "id": "CUST001"
+                }
+            ]
+        },
+        {
+            "type": "Sale",
+            "id": "SALE002",
+            "name": "Sale to Anita Verma (Mar 2024)",
+            "saleDate": "2024-03-10",
+            "saleAmount": 900000,
+            "paymentMode": "Cash",
+            "dealer": "Suzuki Nexa Mumbai",
+            "relationships": [
+                {
+                    "type": "Car",
+                    "id": "CAR002"
+                },
+                {
+                    "type": "Customer",
+                    "id": "CUST002"
+                }
+            ]
+        },
+        {
+            "type": "Sale",
+            "id": "SALE003",
+            "name": "Sale to Suresh Iyer (Apr 2024)",
+            "saleDate": "2024-04-05",
+            "saleAmount": 1120000,
+            "paymentMode": "Loan",
+            "dealer": "Suzuki Arena Bangalore",
+            "relationships": [
+                {
+                    "type": "Car",
+                    "id": "CAR003"
+                },
+                {
+                    "type": "Customer",
+                    "id": "CUST003"
+                }
+            ]
+        },
+        {
+            "type": "ServiceClaim",
+            "id": "SERV001",
+            "name": "Free Service - 5000 km",
+            "serviceType": "Free Service",
+            "serviceDate": "2024-05-20",
+            "odometerReading": 5000,
+            "serviceCost": 0,
+            "serviceCenter": "Suzuki Service Center Delhi",
+            "relationships": [
+                {
+                    "type": "Car",
+                    "id": "CAR001"
+                }
+            ]
+        },
+        {
+            "type": "ServiceClaim",
+            "id": "SERV002",
+            "name": "Paid Service - 15000 km",
+            "serviceType": "Paid Service",
+            "serviceDate": "2024-10-10",
+            "odometerReading": 15000,
+            "serviceCost": 6500,
+            "serviceCenter": "Suzuki Service Center Gurgaon",
+            "relationships": [
+                {
+                    "type": "Car",
+                    "id": "CAR001"
+                }
+            ]
+        },
+        {
+            "type": "ServiceClaim",
+            "id": "SERV003",
+            "name": "Free Service - 6000 km",
+            "serviceType": "Free Service",
+            "serviceDate": "2024-06-18",
+            "odometerReading": 6000,
+            "serviceCost": 0,
+            "serviceCenter": "Suzuki Service Center Mumbai",
+            "relationships": [
+                {
+                    "type": "Car",
+                    "id": "CAR002"
+                }
+            ]
+        },
+        {
+            "type": "ServiceClaim",
+            "id": "SERV004",
+            "name": "Paid Service - 8000 km",
+            "serviceType": "Paid Service",
+            "serviceDate": "2024-07-25",
+            "odometerReading": 8000,
+            "serviceCost": 7200,
+            "serviceCenter": "Suzuki Service Center Bangalore",
+            "relationships": [
+                {
+                    "type": "Car",
+                    "id": "CAR003"
+                }
+            ]
+        },
+        {
+            "type": "ServiceClaim",
+            "id": "SERV005",
+            "name": "Major Repair - 20000 km",
+            "serviceType": "Major Repair",
+            "serviceDate": "2024-11-12",
+            "odometerReading": 20000,
+            "serviceCost": 18500,
+            "serviceCenter": "Suzuki Authorized Service Hub Bangalore",
+            "relationships": [
+                {
+                    "type": "Car",
+                    "id": "CAR003"
+                }
+            ]
+        }
+    ]
+}

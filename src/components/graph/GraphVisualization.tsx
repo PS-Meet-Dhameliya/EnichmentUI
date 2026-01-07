@@ -2,24 +2,26 @@ import { useState, useCallback } from 'react';
 import { ForceGraph } from './ForceGraph';
 import { NodeDetailPanel } from './NodeDetailPanel';
 import { GraphControls } from './GraphControls';
-import { GraphLegend } from './GraphLegend';
 import { EntitySelector } from './EntitySelector';
+import { GraphLegend } from './GraphLegend';
 import { useGraphData } from '@/hooks/useGraphData';
 import { GraphNode } from '@/types/graph';
 
 export function GraphVisualization() {
+  const [dataFile, setDataFile] = useState('example-3-entities.json');
+
   const {
     nodes,
     links,
     selectedNode,
-    navigationMode,
     selectedEntityType,
     availableEntities,
+    entityColors,
     toggleNode,
     selectNode,
     resetGraph,
     setSelectedEntityType
-  } = useGraphData();
+  } = useGraphData(dataFile);
 
   const [hoveredNode, setHoveredNode] = useState<GraphNode | null>(null);
 
@@ -46,6 +48,7 @@ export function GraphVisualization() {
           onNodeClick={handleNodeClick}
           onNodeHover={handleNodeHover}
           selectedNodeId={selectedNode?.id}
+          entityColors={entityColors}
         />
       </div>
 
@@ -70,9 +73,14 @@ export function GraphVisualization() {
           />
         </div>
 
-        {/* Legend */}
-        <div className="pointer-events-auto z-10">
-          <GraphLegend navigationMode={navigationMode} />
+        {/* Legend with Data Source Selector */}
+        <div className="pointer-events-auto z-20">
+          <GraphLegend
+            entities={availableEntities}
+            entityColors={entityColors}
+            selectedFile={dataFile}
+            onFileChange={setDataFile}
+          />
         </div>
 
         {/* Controls */}
