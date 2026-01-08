@@ -1,0 +1,164 @@
+{
+    "metadata": {
+        "name": "Insurance Data - 3 Entities",
+        "description": "Employee insurance policies and claims"
+    },
+    "entities": [
+        {
+            "type": "Employee",
+            "id": "EMP001",
+            "name": "John Doe",
+            "department": "IT",
+            "email": "john.doe@company.com",
+            "relationships": [
+                {
+                    "type": "Policy",
+                    "id": "POL001"
+                },
+                {
+                    "type": "Policy",
+                    "id": "POL002"
+                }
+            ]
+        },
+        {
+            "type": "Employee",
+            "id": "EMP002",
+            "name": "Jane Smith",
+            "department": "HR",
+            "email": "jane.smith@company.com",
+            "relationships": [
+                {
+                    "type": "Policy",
+                    "id": "POL003"
+                }
+            ]
+        },
+        {
+            "type": "Employee",
+            "id": "EMP003",
+            "name": "Mike Johnson",
+            "department": "Finance",
+            "email": "mike.johnson@company.com",
+            "relationships": [
+                {
+                    "type": "Policy",
+                    "id": "POL004"
+                }
+            ]
+        },
+        {
+            "type": "Policy",
+            "id": "POL001",
+            "name": "Health Insurance - HLT-987654",
+            "policyType": "Health",
+            "provider": "ABC Health Insurance",
+            "sumInsured": 1000000,
+            "currency": "USD",
+            "relationships": [
+                {
+                    "type": "Claim",
+                    "id": "CLM1001"
+                },
+                {
+                    "type": "Claim",
+                    "id": "CLM1002"
+                }
+            ]
+        },
+        {
+            "type": "Policy",
+            "id": "POL002",
+            "name": "Life Insurance - LIF-456789",
+            "policyType": "Life",
+            "provider": "XYZ Life Insurance",
+            "sumInsured": 5000000,
+            "currency": "USD",
+            "relationships": []
+        },
+        {
+            "type": "Policy",
+            "id": "POL003",
+            "name": "Health Insurance - HLT-123456",
+            "policyType": "Health",
+            "provider": "ABC Health Insurance",
+            "sumInsured": 500000,
+            "currency": "USD",
+            "relationships": [
+                {
+                    "type": "Claim",
+                    "id": "CLM2001"
+                }
+            ]
+        },
+        {
+            "type": "Policy",
+            "id": "POL004",
+            "name": "Health Insurance - HLT-789012",
+            "policyType": "Health",
+            "provider": "DEF Health Insurance",
+            "sumInsured": 1500000,
+            "currency": "USD",
+            "relationships": [
+                {
+                    "type": "Claim",
+                    "id": "CLM3001"
+                },
+                {
+                    "type": "Claim",
+                    "id": "CLM3002"
+                }
+            ]
+        },
+        {
+            "type": "Claim",
+            "id": "CLM1001",
+            "name": "Medical Claim",
+            "claimType": "Medical",
+            "amount": 5000,
+            "approvedAmount": 4200,
+            "status": "Approved",
+            "date": "2024-08-20"
+        },
+        {
+            "type": "Claim",
+            "id": "CLM1002",
+            "name": "Dental Claim",
+            "claimType": "Dental",
+            "amount": 800,
+            "approvedAmount": 800,
+            "status": "Approved",
+            "date": "2024-09-15"
+        },
+        {
+            "type": "Claim",
+            "id": "CLM2001",
+            "name": "Medical Claim",
+            "claimType": "Medical",
+            "amount": 3000,
+            "approvedAmount": 2800,
+            "status": "Approved",
+            "date": "2024-07-10"
+        },
+        {
+            "type": "Claim",
+            "id": "CLM3001",
+            "name": "Medical Claim",
+            "claimType": "Medical",
+            "amount": 7500,
+            "approvedAmount": 7000,
+            "status": "Approved",
+            "date": "2024-06-25"
+        },
+        {
+            "type": "Claim",
+            "id": "CLM3002",
+            "name": "Pharmacy Claim",
+            "claimType": "Pharmacy",
+            "amount": 500,
+            "approvedAmount": 450,
+            "status": "Pending",
+            "date": "2024-10-01"
+        }
+    ]
+}

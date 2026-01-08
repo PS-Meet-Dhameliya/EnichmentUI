@@ -1,0 +1,126 @@
+{
+    "metadata": {
+        "name": "HR Data - 4 Entities",
+        "description": "Employee, Department, Project, and Task relationships"
+    },
+    "entities": [
+        {
+            "type": "Employee",
+            "id": "EMP001",
+            "name": "Alice Johnson",
+            "role": "Senior Developer",
+            "email": "alice@company.com",
+            "relationships": [
+                {
+                    "type": "Department",
+                    "id": "DEPT001"
+                },
+                {
+                    "type": "Project",
+                    "id": "PROJ001"
+                },
+                {
+                    "type": "Project",
+                    "id": "PROJ002"
+                }
+            ]
+        },
+        {
+            "type": "Employee",
+            "id": "EMP002",
+            "name": "Bob Smith",
+            "role": "Product Manager",
+            "email": "bob@company.com",
+            "relationships": [
+                {
+                    "type": "Department",
+                    "id": "DEPT002"
+                },
+                {
+                    "type": "Project",
+                    "id": "PROJ002"
+                }
+            ]
+        },
+        {
+            "type": "Department",
+            "id": "DEPT001",
+            "name": "Engineering",
+            "budget": 500000,
+            "location": "Building A",
+            "relationships": [
+                {
+                    "type": "Project",
+                    "id": "PROJ001"
+                }
+            ]
+        },
+        {
+            "type": "Department",
+            "id": "DEPT002",
+            "name": "Product",
+            "budget": 300000,
+            "location": "Building B",
+            "relationships": [
+                {
+                    "type": "Project",
+                    "id": "PROJ002"
+                }
+            ]
+        },
+        {
+            "type": "Project",
+            "id": "PROJ001",
+            "name": "Mobile App Redesign",
+            "status": "In Progress",
+            "deadline": "2024-12-31",
+            "relationships": [
+                {
+                    "type": "Task",
+                    "id": "TASK001"
+                },
+                {
+                    "type": "Task",
+                    "id": "TASK002"
+                }
+            ]
+        },
+        {
+            "type": "Project",
+            "id": "PROJ002",
+            "name": "Customer Portal",
+            "status": "Planning",
+            "deadline": "2025-03-15",
+            "relationships": [
+                {
+                    "type": "Task",
+                    "id": "TASK003"
+                }
+            ]
+        },
+        {
+            "type": "Task",
+            "id": "TASK001",
+            "name": "Design UI Mockups",
+            "priority": "High",
+            "status": "Completed",
+            "assignee": "Alice Johnson"
+        },
+        {
+            "type": "Task",
+            "id": "TASK002",
+            "name": "Implement Authentication",
+            "priority": "High",
+            "status": "In Progress",
+            "assignee": "Alice Johnson"
+        },
+        {
+            "type": "Task",
+            "id": "TASK003",
+            "name": "Requirements Gathering",
+            "priority": "Medium",
+            "status": "Not Started",
+            "assignee": "Bob Smith"
+        }
+    ]
+}
